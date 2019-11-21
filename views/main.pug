@@ -1,0 +1,9 @@
+include header.pug
+
+
+each val, index in goods
+    p #{val['name']}
+    img(
+    src='pic/'+val['image']
+    class="test"
+    )
