@@ -1,0 +1,61 @@
+include header
+
+div( class='wrap' )
+    div( class='content' )
+        header( class='site-header' )
+            include site_header_order
+
+        div( class='container mt-4' )
+            div( class='row' )
+                div( class='col-12' )
+                    h3( class='cart-header' ) Cart
+                    div( id='cart-nav' )
+                div( class='col-12' )
+                    h3 Create order
+                div( class=' col-6' )
+                    from#lite-shop-order( action="" )
+                        div( class=' order-form' )
+                            label( for='username' ) Name
+                                input(
+                                    type='text',
+                                    class='form-control',
+                                    id='username',
+                                    placeholder='Enter your name'
+                                )
+                        div( class='order-form' )
+                            label( for='phone' class='mr-4' ) Phone
+                                input(
+                                    class='form-control',
+                                    type='text',
+                                    id='phone',
+                                    placeholder='+38055 555 55 55'
+                                )
+                        div( class='order-form' )
+                            label( for='email' ) Email
+                                input(
+                                    class='form-control',
+                                    type='text',
+                                    id='email',
+                                    placeholder='mail@example.com'
+                                )
+                        div( class='order-form' )
+                            label( for='address' ) Address
+                                input(
+                                    class='form-control',
+                                    type='textarea',
+                                    id='address',
+                                    placeholder='Kiyv Lesi Ukrainki bulv, 9 - 106'
+                                )
+                        div( class=' order-form' )
+                            label( for='rule' )
+                                input(
+                                    class='mr-2'
+                                    type='checkbox',
+                                    id='rule',
+                                    value='1'
+                                )
+                                span Terms and Conditions
+                        div( class='from-control text-right order-form' )
+                            button( class='btn btn-success' type='submit') Finish order
+            include footer
+    script( src='js/order' )

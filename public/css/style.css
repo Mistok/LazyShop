@@ -194,3 +194,14 @@ a .order-button:hover{
     padding-bottom: 0;
 
 }
+/* Order page */
+
+.order-form{
+    margin-bottom: 10px;
+}
+.order-form label{
+    width: 100%;
+}
+.order-form input{
+    margin-top: 10px;
+}
