@@ -1,4 +1,5 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
 
 let app = express();
 
@@ -17,6 +18,7 @@ let con = mysql.createConnection({
     database: 'market',
     password: 'root'
 });
+
 
 app.listen(3000, ()=>{
     //console.log('node Express works on 3000');
@@ -136,3 +138,36 @@ app.post('/get-goods-info', function ( req,res ) {
     }
 
 });
+
+app.post('/finish-order', function (req, res) {
+    console.log(req.body);
+    if( req.body.key.length !== 0 ){ // если корзина не пуста
+        let key = Object.keys(req.body.key); // получаем айдишники товаров из корзины
+        con.query('SELECT id, name, cost FROM goods WHERE id IN ( ' + key.join( ',' ) + ' ) ', function (error, result, fields) {
+            if (error) throw error;
+            let goods = {};
+            for ( let i = 0 ; i < result.length ; i++ ){
+                goods[result[i]['id']] = result[i];
+            }
+            sendMail(req.body, result).catch(console.error); // письмо с заказом на почту
+        });
+
+        res.send('1')
+
+    } else {
+        res.send('0');
+    }
+});
+
+async function sendMail(data, result){
+    let res = '<h2>Order in LazyShop</h2>';
+    let total = 0;
+
+   // console.log(`Result length ${result.length}`);
+    //console.log(`Result length ${result[i]['name']['id']}`);
+    for ( let i = 0 ; i < result.length ; i++ ){
+        res += `<p> ${result[i]['name']} - ${data.key[result[i]['id']]} - ${result[i]['cost']*data.key[result[i]['id']]} uah </p>`;
+        total += result[i]['cost']*data.key[result[i]['id']]
+    }
+    console.log(res)
+}

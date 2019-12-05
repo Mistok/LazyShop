@@ -12,8 +12,8 @@ div( class='wrap' )
                     div( id='cart-nav' )
                 div( class='col-12' )
                     h3 Create order
-                div( class=' col-6' )
-                    from#lite-shop-order( action="" )
+                div( class=' col-12 col-md-6' )
+                    from( id='lazy-shop-order' action="" )
                         div( class=' order-form' )
                             label( for='username' ) Name
                                 input(
@@ -56,6 +56,6 @@ div( class='wrap' )
                                 )
                                 span Terms and Conditions
                         div( class='from-control text-right order-form' )
-                            button( class='btn btn-success' type='submit') Finish order
-            include footer
-    script( src='js/order' )
+                            input( class='btn btn-success' id='lazy-shop-order-submit' type='submit' value='Finish order')
+            include order-footer
+    script( src='js/order.js' )
