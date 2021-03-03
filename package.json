@@ -11,7 +11,7 @@
     "npm": "^6.12.1"
   },
   "devDependencies": {
-    "pug": "^2.0.4"
+    "pug": "^3.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
